@@ -10,6 +10,7 @@ namespace ShopAPIWith3Layers.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
+
         public ProductController(IProductService productService)
         {
             _productService = productService;
@@ -34,6 +35,17 @@ namespace ShopAPIWith3Layers.Controllers
             {
                 return BadRequest(new { Error = ex.Message });
             }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProductById(int id)
+        {
+            var product = await _productService.GetProductByIdAsync(id);
+            if (product == null)
+            {
+                return NotFound(new { Message = "Product not found." });
+            }
+            return Ok(product);
         }
     }
 }

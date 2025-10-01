@@ -11,7 +11,7 @@ namespace DataAccessLayer.Repository
 {
     public class OrderRepository : GenericRepository<Order>, IOrderRepository
     {
-        private readonly ShopDbContext _dbContext;
+        //private readonly ShopDbContext _dbContext;
         public OrderRepository(ShopDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;

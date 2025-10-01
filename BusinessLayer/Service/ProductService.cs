@@ -56,9 +56,17 @@ namespace BusinessLayer.Service
             }).ToList();
         }
 
-        public Task<ProductVM> GetProductByIdAsync(int id)
+        public async Task<ProductVM> GetProductByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var product = await _productRepository.GetByIdAsync(id);
+
+            return new ProductVM
+            {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                Price = product.Price,
+                Stock = product.Stock
+            };
         }
 
         public Task UpdateProductAsync(ProductVM product)
