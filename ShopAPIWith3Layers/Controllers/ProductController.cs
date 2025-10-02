@@ -47,5 +47,44 @@ namespace ShopAPIWith3Layers.Controllers
             }
             return Ok(product);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductVM product)
+        {
+            if (id != product.ProductId)
+            {
+                return BadRequest(new { Message = "Product ID mismatch." });
+            }
+            try
+            {
+                await _productService.UpdateProductAsync(product);
+                return Ok(new { Message = "Product updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Error = ex.Message });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            try
+            {
+                bool isDeleted = await _productService.DeleteProductByIdAsync(id);
+                if (isDeleted)
+                {
+                    return Ok(new { Message = "Product deleted successfully." });
+                }
+                else
+                {
+                    return NotFound(new { Message = "Product not found." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Error = ex.Message });
+            }
+        }
     }
 }
