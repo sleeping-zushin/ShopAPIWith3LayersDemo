@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
+    public class UserRepository : GenericRepository<User>, IUserRepository
     {
         private readonly ShopDbContext _dbContext;
-        public CustomerRepository(ShopDbContext dbContext) : base(dbContext)
+        public UserRepository(ShopDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }

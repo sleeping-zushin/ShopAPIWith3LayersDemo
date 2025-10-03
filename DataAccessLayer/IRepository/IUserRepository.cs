@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.IRepository
 {
-    public interface ICustomerRepository : IGenericRepository<Customer>
+    public interface IUserRepository : IGenericRepository<User>
     {
     }
 }
