@@ -13,8 +13,10 @@ namespace BusinessLayer.Mapper
         {
             // CreateMap<Source, Destination>();
             CreateProductMap();
+            CreateUserMap();
         }
 
         partial void CreateProductMap();
+        partial void CreateUserMap();
     }
 }
